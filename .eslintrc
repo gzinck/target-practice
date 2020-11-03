@@ -1,0 +1,37 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "indent": ["error", "tab"],
+    "import/prefer-default-export": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "no-multi-spaces": "off",
+    "no-plusplus": "off",
+    "no-tabs": "off",
+    "no-debugger": "off",
+    "consistent-return": "off",
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }],
+    "no-use-before-define": ["error", { "functions": false }],
+	"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/forbid-prop-types": ["warn", { "forbid": ["any"], "checkChildContextTypes": false}],
+    "react/jsx-indent": ["error", "tab", { "checkAttributes": true }],
+    "react/jsx-indent-props": ["warn", "tab"],
+    "react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }],
+    "react/prefer-stateless-function": ["warn", { "ignorePureComponents": true }],
+    "react/destructuring-assignment": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-unused-prop-types": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}
