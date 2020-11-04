@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import Circle from './Circle';
+import useController from '../hooks/useController';
 
 const useStyles = makeStyles({
 	root: {
@@ -10,16 +10,17 @@ const useStyles = makeStyles({
 	},
 });
 
-function Canvas(props) {
+function Canvas() {
 	const classes = useStyles();
 	const [circProps, setCircProps] = React.useState(null);
+	const controller = useController();
 
 	const next = () => {
-		if (props.controller !== null) {
-			setCircProps(props.controller.next());
+		if (controller !== null) {
+			setCircProps(controller.next());
 		}
 	};
-	React.useEffect(next, [props.controller]);
+	React.useEffect(next, [controller]);
 
 	return (
 		<div className={classes.root}>
@@ -30,13 +31,5 @@ function Canvas(props) {
 		</div>
 	);
 }
-
-Canvas.defaultProps = {
-	controller: null,
-};
-
-Canvas.propTypes = {
-	controller: PropTypes.object, // Should be a controller
-};
 
 export default Canvas;
