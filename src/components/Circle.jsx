@@ -14,6 +14,13 @@ const useStyles = makeStyles({
 		backgroundColor: color,
 		borderRadius: diameter / 2,
 		border: 'none',
+		transition: 'all 0.2s',
+		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
+		'&:hover, &:focus': {
+			cursor: 'pointer',
+			boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+			backgroundColor: '#0008ff',
+		},
 	}),
 });
 

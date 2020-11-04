@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import Canvas from './components/Canvas';
+import Menu from './components/menu/Menu';
 
 const useStyles = makeStyles({
 	root: {
@@ -24,7 +25,7 @@ function App() {
 						<Canvas />
 					</Route>
 					<Route path="/">
-						<h1>BOOP</h1>
+						<Menu />
 					</Route>
 				</Switch>
 			</Router>
