@@ -1,6 +1,7 @@
 class Controller {
 	constructor() {
 		this.diameter = 200;
+		this.left = true;
 	}
 
 	/**
@@ -8,8 +9,15 @@ class Controller {
 	 * the controller.
 	 */
 	next() {
-		this.x = Math.random() * (window.innerWidth - this.diameter);
+		// Swap sides
+		this.left = !this.left;
+
+		const radius = this.diameter / 2;
+		this.x = (this.left)
+			? (window.innerWidth / 4 - radius)
+			: ((window.innerWidth * 3) / 4 - radius);
 		this.y = (window.innerHeight - this.diameter) / 2;
+
 		return {
 			x: this.x,
 			y: this.y,

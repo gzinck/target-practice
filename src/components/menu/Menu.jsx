@@ -2,7 +2,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import {
+	controller1DFixedName,
 	controller1DRandName,
+	controller1DSemiName,
+	controller2DFixedName,
+	controller2DRandName,
+	controller2DSemiName,
 	playRoute,
 } from '../../routes';
 
@@ -30,6 +35,7 @@ const useStyles = makeStyles({
 		boxSizing: 'border-box',
 		display: 'block',
 		padding: '20px',
+		margin: '10px 0',
 		borderRadius: '4px',
 		fontSize: '1.2em',
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
@@ -41,6 +47,33 @@ const useStyles = makeStyles({
 	},
 });
 
+const links = [
+	{
+		name: '1D Random Motion',
+		route: playRoute + controller1DRandName,
+	},
+	{
+		name: '1D Fixed Motion',
+		route: playRoute + controller1DFixedName,
+	},
+	{
+		name: '1D Semi-Random Motion',
+		route: playRoute + controller1DSemiName,
+	},
+	{
+		name: '2D Random Motion',
+		route: playRoute + controller2DRandName,
+	},
+	{
+		name: '2D Fixed Motion',
+		route: playRoute + controller2DFixedName,
+	},
+	{
+		name: '2D Semi-Random Motion',
+		route: playRoute + controller2DSemiName,
+	},
+];
+
 function Menu() {
 	const classes = useStyles();
 
@@ -51,12 +84,15 @@ function Menu() {
 				This research analyses how you move when hitting targets.
 				Select one of the evaluation modes below.
 			</p>
-			<Link
-				to={playRoute + controller1DRandName}
-				className={classes.link}
-			>
-				1D Random Motion
-			</Link>
+			{links.map((link) => (
+				<Link
+					key={link.name}
+					to={link.route}
+					className={classes.link}
+				>
+					{link.name}
+				</Link>
+			))}
 		</div>
 	);
 }
