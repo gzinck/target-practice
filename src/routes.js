@@ -1,5 +1,6 @@
 const menuRoute = '/';
-const playRoute = '/play/';
+const doneRoute = '/done';
+const tapRoute = '/tap/';
 
 const controller1DRandName = '1drand';
 const controller1DFixedName = '1dfixed';
@@ -16,6 +17,7 @@ export {
 	controller2DRandName,
 	controller2DFixedName,
 	controller2DSemiName,
+	doneRoute,
 	menuRoute,
-	playRoute,
+	tapRoute,
 };

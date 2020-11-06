@@ -6,7 +6,12 @@ import {
 } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import Canvas from './components/Canvas';
-import Menu from './components/menu/Menu';
+import MainMenu from './components/menu/MainMenu';
+import DoneMenu from './components/menu/DoneMenu';
+import {
+	doneRoute,
+	tapRoute,
+} from './routes';
 
 const useStyles = makeStyles({
 	root: {
@@ -21,11 +26,14 @@ function App() {
 		<div className={classes.root}>
 			<Router>
 				<Switch>
-					<Route path="/play/:controller">
+					<Route path={`${tapRoute}:controller`}>
 						<Canvas />
 					</Route>
+					<Route path={doneRoute}>
+						<DoneMenu />
+					</Route>
 					<Route path="/">
-						<Menu />
+						<MainMenu />
 					</Route>
 				</Switch>
 			</Router>

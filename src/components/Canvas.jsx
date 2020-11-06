@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import { menuRoute } from '../routes';
 import Circle from './Circle';
+import ProgressBar from './ProgressBar';
 import useController from '../hooks/useController';
+import useProgress from '../hooks/useProgress';
 
 const useStyles = makeStyles({
 	root: {
@@ -37,12 +39,25 @@ function Canvas() {
 	const [circProps, setCircProps] = React.useState(null);
 	const controller = useController();
 
+	const {
+		progress, maxProgress, incrementProgress, resetProgress,
+	} = useProgress();
+
+	// To go to the next circle
 	const next = () => {
 		if (controller !== null) {
 			setCircProps(controller.next());
+			incrementProgress();
 		}
 	};
-	React.useEffect(next, [controller]);
+
+	// When the controller changes, reset progress
+	React.useEffect(() => {
+		if (controller !== null) {
+			setCircProps(controller.next());
+			resetProgress();
+		}
+	}, [controller]);
 
 	return (
 		<div className={classes.root}>
@@ -55,6 +70,10 @@ function Canvas() {
 			<Circle
 				{...circProps}
 				onClick={next}
+			/>
+			<ProgressBar
+				current={progress}
+				max={maxProgress}
 			/>
 		</div>
 	);

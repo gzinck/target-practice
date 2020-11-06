@@ -1,22 +1,32 @@
 import React from 'react';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
-import {
-	controller1DFixedName,
-	controller1DRandName,
-	controller1DSemiName,
-	controller2DFixedName,
-	controller2DRandName,
-	controller2DSemiName,
-	playRoute,
-} from '../../routes';
 
 const useStyles = makeStyles({
 	root: {
+		position: 'relative',
+		paddingTop: '50px',
+		boxSizing: 'border-box',
+		width: '100%',
+		minHeight: '100vh',
+	},
+	success: {
+		'& $menu': {
+			backgroundColor: '#f7fff8',
+		},
+		'& $link': {
+			backgroundColor: '#00a619',
+			'&:hover, &:focus': {
+				backgroundColor: '#007512',
+			},
+		},
+	},
+	menu: {
 		maxWidth: '400px',
 		minHeight: '600px',
 		marginLeft: 'calc(50vw - min(100vw, 400px) / 2)',
-		marginTop: '50px',
 		marginBottom: '50px',
 		borderRadius: '5px',
 		padding: '30px 20px',
@@ -45,56 +55,48 @@ const useStyles = makeStyles({
 			backgroundColor: '#0008ff',
 		},
 	},
+
 });
 
-const links = [
-	{
-		name: '1D Random Motion',
-		route: playRoute + controller1DRandName,
-	},
-	{
-		name: '1D Fixed Motion',
-		route: playRoute + controller1DFixedName,
-	},
-	{
-		name: '1D Semi-Random Motion',
-		route: playRoute + controller1DSemiName,
-	},
-	{
-		name: '2D Random Motion',
-		route: playRoute + controller2DRandName,
-	},
-	{
-		name: '2D Fixed Motion',
-		route: playRoute + controller2DFixedName,
-	},
-	{
-		name: '2D Semi-Random Motion',
-		route: playRoute + controller2DSemiName,
-	},
-];
-
-function Menu() {
-	const classes = useStyles();
+function Menu(props) {
+	const classes = useStyles({ ...props });
 
 	return (
-		<div className={classes.root}>
-			<h2>Target Practice</h2>
-			<p>
-				This research analyses how you move when hitting targets.
-				Select one of the evaluation modes below.
-			</p>
-			{links.map((link) => (
-				<Link
-					key={link.name}
-					to={link.route}
-					className={classes.link}
-				>
-					{link.name}
-				</Link>
-			))}
+		<div
+			className={clsx(
+				classes.root,
+				classes[props.variant],
+			)}
+		>
+			<div className={classes.menu}>
+				<h2>{props.title}</h2>
+				{props.children}
+				{props.links.map((link) => (
+					<Link
+						key={link.name}
+						to={link.route}
+						className={classes.link}
+					>
+						{link.name}
+					</Link>
+				))}
+			</div>
 		</div>
 	);
 }
+
+Menu.defaultProps = {
+	title: 'Menu',
+	links: [],
+	children: null,
+	variant: '',
+};
+
+Menu.propTypes = {
+	title: PropTypes.string,
+	links: PropTypes.array,
+	children: PropTypes.node,
+	variant: PropTypes.string,
+};
 
 export default Menu;
