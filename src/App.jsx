@@ -5,11 +5,13 @@ import {
 	Switch,
 } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
-import Canvas from './components/Canvas';
+import TapScreen from './components/TapScreen';
+import DragScreen from './components/DragScreen';
 import MainMenu from './components/menu/MainMenu';
 import DoneMenu from './components/menu/DoneMenu';
 import {
 	doneRoute,
+	dragRoute,
 	tapRoute,
 } from './routes';
 
@@ -27,7 +29,10 @@ function App() {
 			<Router>
 				<Switch>
 					<Route path={`${tapRoute}:controller`}>
-						<Canvas />
+						<TapScreen />
+					</Route>
+					<Route path={`${dragRoute}:controller`}>
+						<DragScreen />
 					</Route>
 					<Route path={doneRoute}>
 						<DoneMenu />

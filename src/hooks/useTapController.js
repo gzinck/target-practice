@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Rand1D from '../controllers/1D/RandTargetController';
-import Fixed1D from '../controllers/1D/FixedTargetController';
-import Semi1D from '../controllers/1D/SemiTargetController';
-import Rand2D from '../controllers/2D/RandTargetController';
-import Fixed2D from '../controllers/2D/FixedTargetController';
-import Semi2D from '../controllers/2D/SemiTargetController';
+import Rand1D from '../controllers/tap/1D/RandTargetController';
+import Fixed1D from '../controllers/tap/1D/FixedTargetController';
+import Semi1D from '../controllers/tap/1D/SemiTargetController';
+import Rand2D from '../controllers/tap/2D/RandTargetController';
+import Fixed2D from '../controllers/tap/2D/FixedTargetController';
+import Semi2D from '../controllers/tap/2D/SemiTargetController';
 import {
 	controller1DFixedName,
 	controller1DRandName,

@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
 	root: {
@@ -16,12 +15,6 @@ const useStyles = makeStyles({
 		'& $menu': {
 			backgroundColor: '#f7fff8',
 		},
-		'& $link': {
-			backgroundColor: '#00a619',
-			'&:hover, &:focus': {
-				backgroundColor: '#007512',
-			},
-		},
 	},
 	menu: {
 		maxWidth: '400px',
@@ -34,28 +27,6 @@ const useStyles = makeStyles({
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
 		backgroundColor: '#EEE',
 	},
-	link: {
-		position: 'relative',
-		top: '0px',
-		backgroundColor: '#0091ff',
-		textDecoration: 'none',
-		color: '#FFF',
-		transition: 'all 0.2s',
-		width: '100%',
-		boxSizing: 'border-box',
-		display: 'block',
-		padding: '20px',
-		margin: '10px 0',
-		borderRadius: '4px',
-		fontSize: '1.2em',
-		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
-		'&:hover, &:focus': {
-			top: '2px',
-			boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-			backgroundColor: '#0008ff',
-		},
-	},
-
 });
 
 function Menu(props) {
@@ -71,15 +42,6 @@ function Menu(props) {
 			<div className={classes.menu}>
 				<h2>{props.title}</h2>
 				{props.children}
-				{props.links.map((link) => (
-					<Link
-						key={link.name}
-						to={link.route}
-						className={classes.link}
-					>
-						{link.name}
-					</Link>
-				))}
 			</div>
 		</div>
 	);
@@ -87,14 +49,12 @@ function Menu(props) {
 
 Menu.defaultProps = {
 	title: 'Menu',
-	links: [],
 	children: null,
 	variant: '',
 };
 
 Menu.propTypes = {
 	title: PropTypes.string,
-	links: PropTypes.array,
 	children: PropTypes.node,
 	variant: PropTypes.string,
 };

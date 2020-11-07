@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { menuRoute } from '../routes';
 import Circle from './Circle';
 import ProgressBar from './ProgressBar';
-import useController from '../hooks/useController';
+import useController from '../hooks/useTapController';
 import useProgress from '../hooks/useProgress';
 
 const useStyles = makeStyles({
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function Canvas() {
+function TapScreen() {
 	const classes = useStyles();
 	const [circProps, setCircProps] = React.useState(null);
 	const controller = useController();
@@ -79,4 +79,4 @@ function Canvas() {
 	);
 }
 
-export default Canvas;
+export default TapScreen;
