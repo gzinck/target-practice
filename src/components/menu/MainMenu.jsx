@@ -4,7 +4,7 @@ import Toggle from './Toggle';
 import Link from './Link';
 
 const dimensionOpts = ['1D', '2D'];
-const randomOpts = ['Fixed', 'Semi-Random', 'Random'];
+const randomOpts = ['Fixed', 'Semi', 'Random'];
 const interactionOpts = ['Tap', 'Drag'];
 
 function MainMenu() {
@@ -38,6 +38,7 @@ function MainMenu() {
 				curr={rand}
 				setCurr={(i) => setRand(i)}
 			/>
+			<br />
 			<Link
 				to={`/${currInt}/${currDims}${currRand}`}
 			>

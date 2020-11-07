@@ -6,13 +6,12 @@ function DoneMenu() {
 	return (
 		<Menu
 			title="Excercise Complete"
-			variant="success"
 		>
 			<p>
 				Great work! You&apos;ve completed this exercise.
 				Go back to the main menu to select the next evaluation mode.
 			</p>
-			<Link to="/" variant="success">Main Menu</Link>
+			<Link to="/">Main Menu</Link>
 		</Menu>
 	);
 }

@@ -6,6 +6,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
 	root: {
+		textAlign: 'center',
 		position: 'relative',
 		top: '0px',
 		backgroundColor: '#0091ff',
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
 		display: 'block',
 		padding: '20px',
 		margin: '10px 0',
-		borderRadius: '4px',
+		borderRadius: '100px',
 		fontSize: '1.2em',
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
 		'&:hover, &:focus': {
