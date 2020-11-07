@@ -1,6 +1,8 @@
 class Controller {
 	constructor() {
 		this.left = true;
+		this.downDiameter = 150;
+		this.upDiameter = 100;
 	}
 
 	next() {
@@ -21,6 +23,8 @@ class Controller {
 			x2: this.x2,
 			y1: this.y1,
 			y2: this.y2,
+			downDiameter: this.downDiameter,
+			upDiameter: this.upDiameter,
 		};
 	}
 }
