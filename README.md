@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Target Practice
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple React app developed for evaluating hand motion when
+performing tap and drag exercises. This is one element in larger 
+work that entails tracking the finger position with a Vicon motion system
+and using ML to predict finger motion.
+
+See the current development state at [https://target-it.web.app](https://target-it.web.app).
 
 ## Available Scripts
 
