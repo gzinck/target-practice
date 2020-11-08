@@ -15,8 +15,8 @@ const useStyles = makeStyles({
 	}) => ({
 		transition: (isDrag) ? 'none' : 'all 0.2s',
 		position: 'absolute',
-		left: circX,
-		top: circY,
+		left: circX - downDiameter / 2,
+		top: circY - downDiameter / 2,
 		width: downDiameter,
 		height: downDiameter,
 		backgroundColor: downColor,
@@ -65,27 +65,37 @@ function Dragbar(props) {
 	const dX = props.x2 - props.x1;
 	const dY = props.y2 - props.y1;
 
-	// Keep track of where the user is selecting
+	// Keep track of where the circle currently is
 	const [circX, setCircX] = React.useState(0);
 	const [circY, setCircY] = React.useState(0);
 
+	// Keep track of where circle was before most recent drag
+	const [circWasX, setCircWasX] = React.useState(0);
+	const [circWasY, setCircWasY] = React.useState(0);
+
 	React.useEffect(() => {
-		setCircX(props.x1 - props.downDiameter / 2);
-		setCircY(props.y1 - props.downDiameter / 2);
-	}, [props.x1, props.y1, props.downDiameter]);
+		setCircX(props.x1);
+		setCircY(props.y1);
+		setCircWasX(props.x1);
+		setCircWasY(props.y1);
+	}, [props.x1, props.y1]);
 
 	// When start dragging
 	const dragStart = (e) => {
 		if (e.target === circRef.current) {
-			setIsDrag(true);
-
-			// Set the current position for touch events.
-			// @TODO: test this! It might not work.
-			// See https://developer.mozilla.org/en-US/docs/Web/API/Touch
+			// Set where mouse was at the start of the drag
 			if (e.type === 'touchstart') {
 				setMouseX(e.touches[0].clientX);
 				setMouseY(e.touches[0].clientY);
+			} else {
+				setMouseX(e.clientX);
+				setMouseY(e.clientY);
 			}
+
+			// Set isDrag after other vars to ensure we don't drag until we
+			// have the other variables set properly (otherwise, we have
+			// a race condition).
+			setIsDrag(true);
 		}
 	};
 
@@ -94,11 +104,11 @@ function Dragbar(props) {
 		if (isDrag) {
 			e.preventDefault();
 			if (e.type === 'touchmove') {
-				setCircX(props.x1 + e.touches[0].clientX - mouseX);
-				setCircY(props.y1 + e.touches[0].clientY - mouseY);
+				setCircX(circWasX + e.touches[0].clientX - mouseX);
+				setCircY(circWasY + e.touches[0].clientY - mouseY);
 			} else {
-				setCircX(circX + e.movementX);
-				setCircY(circY + e.movementY);
+				setCircX(circWasX + e.clientX - mouseX);
+				setCircY(circWasY + e.clientY - mouseY);
 			}
 		}
 	};
@@ -107,10 +117,10 @@ function Dragbar(props) {
 	const dragEnd = () => {
 		if (isDrag) {
 			setIsDrag(false);
-			const x = circX + props.downDiameter / 2;
-			const y = circY + props.downDiameter / 2;
+			setCircWasX(circX);
+			setCircWasY(circY);
 			// Test if we hit the target
-			if (getDist(props.x2, props.y2, x, y) < props.downDiameter / 2) {
+			if (getDist(props.x2, props.y2, circX, circY) < props.downDiameter / 2) {
 				props.onComplete();
 			}
 		}
