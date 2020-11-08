@@ -5,11 +5,11 @@ const dragRoute = '/drag/';
 
 const controller1DRandName = '1drandom';
 const controller1DFixedName = '1dfixed';
-const controller1DSemiName = '1dsemi-random';
+const controller1DSemiName = '1dsemi';
 
 const controller2DRandName = '2drandom';
 const controller2DFixedName = '2dfixed';
-const controller2DSemiName = '2dsemi-random';
+const controller2DSemiName = '2dsemi';
 
 export {
 	controller1DRandName,
