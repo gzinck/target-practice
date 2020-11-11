@@ -1,9 +1,16 @@
 const margin = 80;
 
 class Controller {
-	constructor() {
-		this.diameter = 200;
+	/**
+	 * @param randomness A float in range [0, 1] indicating the
+	 * probability the next circle is placed randomly.
+	 * @param diameter An int representing the pixel diameter
+	 * of the target
+	 */
+	constructor(randomness, diameter) {
+		this.diameter = diameter;
 		this.mode = 0;
+		this.randomness = randomness;
 	}
 
 	/**
@@ -11,7 +18,7 @@ class Controller {
 	 * the controller.
 	 */
 	next() {
-		if (Math.random() > 0.8) {
+		if (Math.random() < this.randomness) {
 			// If this is a random one, go crazy!
 			this.x = Math.random() * (window.innerWidth - this.diameter);
 			this.y = Math.random() * (window.innerHeight - this.diameter - 2 * margin) + margin;

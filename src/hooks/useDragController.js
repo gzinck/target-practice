@@ -1,48 +1,32 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Fixed1D from '../controllers/drag/1D/FixedTargetController';
-import Rand1D from '../controllers/drag/1D/RandTargetController';
-import Semi1D from '../controllers/drag/1D/SemiTargetController';
-import Fixed2D from '../controllers/drag/2D/FixedTargetController';
-import Rand2D from '../controllers/drag/2D/RandTargetController';
-import Semi2D from '../controllers/drag/2D/SemiTargetController';
+import Cont1D from '../controllers/drag/1DTargetController';
+import Cont2D from '../controllers/drag/2DTargetController';
 import {
-	controller1DFixedName,
-	controller1DRandName,
-	controller1DSemiName,
-	controller2DFixedName,
-	controller2DRandName,
-	controller2DSemiName,
+	controller1D,
 } from '../routes';
 
 export default function useController() {
-	const { controller: controllerName } = useParams();
+	const {
+		controller: cont, randomness, diameter, length,
+	} = useParams();
 	const [controller, setController] = useState(null);
 
 	useEffect(() => {
-		switch (controllerName) {
-		case controller1DFixedName:
-			setController(new Fixed1D());
-			break;
-		case controller1DRandName:
-			setController(new Rand1D());
-			break;
-		case controller1DSemiName:
-			setController(new Semi1D());
-			break;
-		case controller2DFixedName:
-			setController(new Fixed2D());
-			break;
-		case controller2DRandName:
-			setController(new Rand2D());
-			break;
-		case controller2DSemiName:
-			setController(new Semi2D());
-			break;
-		default:
-			setController(null);
+		if (cont === controller1D) {
+			setController(new Cont1D(
+				parseFloat(randomness),
+				parseFloat(diameter),
+				parseFloat(length),
+			));
+		} else {
+			setController(new Cont2D(
+				parseFloat(randomness),
+				parseFloat(diameter),
+				parseFloat(length),
+			));
 		}
-	}, [controllerName]);
+	}, [cont, randomness, diameter, length]);
 
 	return controller;
 }

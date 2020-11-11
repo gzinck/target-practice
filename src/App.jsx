@@ -11,8 +11,8 @@ import MainMenu from './components/menu/MainMenu';
 import DoneMenu from './components/menu/DoneMenu';
 import {
 	doneRoute,
-	dragRoute,
-	tapRoute,
+	parameterizedDragRoute,
+	parameterizedTapRoute,
 } from './routes';
 
 const useStyles = makeStyles({
@@ -28,10 +28,10 @@ function App() {
 		<div className={classes.root}>
 			<Router>
 				<Switch>
-					<Route path={`${tapRoute}:controller`}>
+					<Route path={parameterizedTapRoute}>
 						<TapScreen />
 					</Route>
-					<Route path={`${dragRoute}:controller`}>
+					<Route path={parameterizedDragRoute}>
 						<DragScreen />
 					</Route>
 					<Route path={doneRoute}>
