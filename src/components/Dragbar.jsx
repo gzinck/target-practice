@@ -11,9 +11,11 @@ const getDist = (x1, y1, x2, y2) => {
 
 const useStyles = makeStyles({
 	downCircle: ({
+		animationTiming, animationEase,
 		downDiameter, circX, circY, downColor, isDrag,
 	}) => ({
-		transition: (isDrag) ? 'none' : 'all 0.2s',
+		transition: (isDrag) ? 'none' : `all ${animationTiming}`,
+		transitionTimingFunction: animationEase,
 		position: 'absolute',
 		left: circX - downDiameter / 2,
 		top: circY - downDiameter / 2,
@@ -29,9 +31,11 @@ const useStyles = makeStyles({
 		},
 	}),
 	upCircle: ({
+		animationTiming, animationEase,
 		x2, y2, upDiameter, upColor,
 	}) => ({
-		transition: 'all 0.2s',
+		transition: `all ${animationTiming}`,
+		transitionTimingFunction: animationEase,
 		position: 'absolute',
 		left: x2 - upDiameter / 2,
 		top: y2 - upDiameter / 2,
@@ -41,9 +45,11 @@ const useStyles = makeStyles({
 		backgroundColor: upColor,
 	}),
 	bar: ({
+		animationTiming, animationEase,
 		upDiameter, x1, y1, length, rotation, color, isDrag,
 	}) => ({
-		transition: (isDrag) ? 'none' : 'all 0.2s',
+		transition: (isDrag) ? 'none' : `all ${animationTiming}`,
+		transitionTimingFunction: animationEase,
 		position: 'absolute',
 		left: x1,
 		top: y1 - upDiameter / 2,
@@ -166,6 +172,8 @@ Dragbar.defaultProps = {
 	color: '#a8d9ff',
 	upColor: '#87cbff',
 	onComplete: () => null,
+	animationTiming: '0.2s',
+	animationEase: 'linear',
 };
 
 Dragbar.propTypes = {
@@ -179,6 +187,8 @@ Dragbar.propTypes = {
 	color: PropTypes.string,
 	upColor: PropTypes.string,
 	onComplete: PropTypes.func,
+	animationTiming: PropTypes.string,
+	animationEase: PropTypes.string,
 };
 
 export default Dragbar;

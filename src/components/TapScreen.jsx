@@ -5,6 +5,7 @@ import { menuRoute } from '../routes';
 import Circle from './Circle';
 import ProgressBar from './ProgressBar';
 import useController from '../hooks/useTapController';
+import useAnimationController from '../hooks/useAnimationController';
 import useProgress from '../hooks/useProgress';
 
 const useStyles = makeStyles({
@@ -38,6 +39,7 @@ function TapScreen() {
 	const classes = useStyles();
 	const [circProps, setCircProps] = React.useState(null);
 	const controller = useController();
+	const { timing, ease } = useAnimationController();
 
 	const {
 		progress, maxProgress, incrementProgress, resetProgress,
@@ -70,6 +72,8 @@ function TapScreen() {
 			<Circle
 				{...circProps}
 				onClick={next}
+				animationTiming={timing}
+				animationEase={ease}
 			/>
 			<ProgressBar
 				current={progress}

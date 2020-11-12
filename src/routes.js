@@ -1,10 +1,10 @@
 const menuRoute = '/';
 const doneRoute = '/done';
 
-const parameterizedTapRoute = '/tap/:controller/rand/:randomness/diam/:diameter';
-const parameterizedDragRoute = '/drag/:controller/rand/:randomness/diam/:diameter/length/:length';
+const parameterizedTapRoute = '/tap/:controller/rand/:randomness/diam/:diameter/ease/:ease/time/:timing';
+const parameterizedDragRoute = '/drag/:controller/rand/:randomness/diam/:diameter/ease/:ease/time/:timing/length/:length';
 
-const getRouteFor = (interaction, controller, randomness, diameter, length) => `/${interaction}/${controller}/rand/${randomness}/diam/${diameter}/length/${length}`;
+const getRouteFor = (interaction, controller, randomness, diameter, ease, timing, length) => `/${interaction}/${controller}/rand/${randomness}/diam/${diameter}/ease/${ease}/time/${timing}/length/${length}`;
 
 const controller1D = '1D';
 const controller2D = '2D';

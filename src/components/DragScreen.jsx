@@ -6,6 +6,7 @@ import ProgressBar from './ProgressBar';
 import Dragbar from './Dragbar';
 import useProgress from '../hooks/useProgress';
 import useController from '../hooks/useDragController';
+import useAnimationController from '../hooks/useAnimationController';
 
 const useStyles = makeStyles({
 	root: {
@@ -43,6 +44,7 @@ function DragScreen() {
 	} = useProgress();
 
 	const controller = useController();
+	const { timing, ease } = useAnimationController();
 
 	// To go to the next circle
 	const next = () => {
@@ -71,6 +73,8 @@ function DragScreen() {
 			<Dragbar
 				{...dragProps}
 				onComplete={next}
+				animationTiming={timing}
+				animationEase={ease}
 			/>
 			<ProgressBar
 				current={progress}

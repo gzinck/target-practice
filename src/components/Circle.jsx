@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
 	root: ({
+		animationTiming, animationEase,
 		diameter, x, y, color,
 	}) => ({
 		position: 'absolute',
@@ -14,7 +15,8 @@ const useStyles = makeStyles({
 		backgroundColor: color,
 		borderRadius: diameter / 2,
 		border: 'none',
-		transition: 'all 0.2s',
+		transition: `all ${animationTiming}`,
+		transitionTimingFunction: animationEase,
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
 		'&:hover, &:focus': {
 			cursor: 'pointer',
@@ -43,6 +45,8 @@ Circle.defaultProps = {
 	diameter: 100,
 	color: '#0091ff',
 	onClick: () => null,
+	animationTiming: '0.2s',
+	animationEase: 'linear',
 	children: ' ', // Note that buttons cannot have no content
 };
 
@@ -55,6 +59,8 @@ Circle.propTypes = {
 	]),
 	color: PropTypes.string,
 	onClick: PropTypes.func,
+	animationTiming: PropTypes.string,
+	animationEase: PropTypes.string,
 	children: PropTypes.node,
 };
 

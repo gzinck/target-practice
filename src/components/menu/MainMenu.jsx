@@ -8,18 +8,23 @@ import { getRouteFor } from '../../routes';
 const dimensionOpts = ['1D', '2D'];
 const randomScale = ['Fixed', 'Semi', 'Random'];
 const interactionOpts = ['Tap', 'Drag'];
+const easeOpts = ['Ease', 'Linear'];
 const diameterScale = [50, 400];
 const lengthScale = [50, 1000];
+const timeScale = [0, 5];
 
 function MainMenu() {
 	const [interaction, setInteraction] = React.useState(0);
 	const [dimensions, setDimensions] = React.useState(0);
 	const [rand, setRand] = React.useState(0);
 	const [diam, setDiam] = React.useState(150);
+	const [time, setTime] = React.useState(0.2);
 	const [length, setLength] = React.useState(300);
+	const [ease, setEase] = React.useState(0);
 
 	const currDim = dimensionOpts[dimensions];
 	const currInteract = interactionOpts[interaction];
+	const currEase = easeOpts[ease];
 	return (
 		<Menu
 			title="Target Practice"
@@ -31,12 +36,17 @@ function MainMenu() {
 			<Toggle
 				opts={interactionOpts}
 				curr={interaction}
-				setCurr={(i) => setInteraction(i)}
+				setCurr={setInteraction}
 			/>
 			<Toggle
 				opts={dimensionOpts}
 				curr={dimensions}
-				setCurr={(i) => setDimensions(i)}
+				setCurr={setDimensions}
+			/>
+			<Toggle
+				opts={easeOpts}
+				curr={ease}
+				setCurr={setEase}
 			/>
 			<Slider
 				label="Randomness"
@@ -54,6 +64,14 @@ function MainMenu() {
 				setValue={setDiam}
 				scaleItems={diameterScale}
 			/>
+			<Slider
+				label="Animation Time"
+				min={timeScale[0]}
+				max={timeScale[1]}
+				value={time}
+				setValue={setTime}
+				scaleItems={timeScale}
+			/>
 			{(interaction === 1) && (
 				<Slider
 					label="Length"
@@ -66,7 +84,7 @@ function MainMenu() {
 			)}
 			<br />
 			<Link
-				to={getRouteFor(currInteract, currDim, rand, diam, length)}
+				to={getRouteFor(currInteract, currDim, rand, diam, currEase, `${time}s`, length)}
 			>
 				Start Exercise
 			</Link>
