@@ -6,10 +6,10 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles({
 	root: {
 		position: 'relative',
-		paddingTop: '50px',
+		overflowY: 'auto',
 		boxSizing: 'border-box',
 		width: '100%',
-		minHeight: '100vh',
+		height: '100vh',
 	},
 	success: {
 		'& $menu': {
@@ -18,9 +18,8 @@ const useStyles = makeStyles({
 	},
 	menu: {
 		maxWidth: '400px',
-		minHeight: '600px',
 		marginLeft: 'calc(50vw - min(100vw, 400px) / 2)',
-		marginBottom: '50px',
+		margin: '50px 0',
 		borderRadius: '5px',
 		padding: '30px 20px',
 		boxSizing: 'border-box',
