@@ -14,6 +14,7 @@ import {
 	parameterizedDragRoute,
 	parameterizedTapRoute,
 } from './routes';
+import ViconService from './services/ViconService';
 
 const useStyles = makeStyles({
 	root: {
@@ -24,6 +25,8 @@ const useStyles = makeStyles({
 
 function App() {
 	const classes = useStyles();
+	const blah = new ViconService('ws://localhost:3456', () => console.error('Received.'));
+	console.error(blah.client.readyState);
 	return (
 		<div className={classes.root}>
 			<Router>
