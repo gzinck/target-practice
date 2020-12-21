@@ -1,5 +1,6 @@
 const menuRoute = '/';
 const doneRoute = '/done';
+const calibrateRoute = '/calibrate';
 
 const parameterizedTapRoute = '/tap/:controller/rand/:randomness/diam/:diameter/ease/:ease/time/:timing';
 const parameterizedDragRoute = '/drag/:controller/rand/:randomness/diam/:diameter/ease/:ease/time/:timing/length/:length';
@@ -15,6 +16,7 @@ export {
 	doneRoute,
 	menuRoute,
 
+	calibrateRoute,
 	parameterizedTapRoute,
 	parameterizedDragRoute,
 	getRouteFor,

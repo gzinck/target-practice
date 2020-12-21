@@ -4,17 +4,20 @@ import {
 	BrowserRouter as Router,
 	Switch,
 } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 import { makeStyles } from '@material-ui/styles';
+import MessageHandler from './MessageHandler';
 import TapScreen from './components/TapScreen';
 import DragScreen from './components/DragScreen';
+import CalibrateScreen from './components/CalibrateScreen';
 import MainMenu from './components/menu/MainMenu';
 import DoneMenu from './components/menu/DoneMenu';
 import {
+	calibrateRoute,
 	doneRoute,
 	parameterizedDragRoute,
 	parameterizedTapRoute,
 } from './routes';
-import ViconService from './services/ViconService';
 
 const useStyles = makeStyles({
 	root: {
@@ -25,26 +28,31 @@ const useStyles = makeStyles({
 
 function App() {
 	const classes = useStyles();
-	const blah = new ViconService('ws://localhost:3456', () => console.error('Received.'));
-	console.error(blah.client.readyState);
 	return (
 		<div className={classes.root}>
-			<Router>
-				<Switch>
-					<Route path={parameterizedTapRoute}>
-						<TapScreen />
-					</Route>
-					<Route path={parameterizedDragRoute}>
-						<DragScreen />
-					</Route>
-					<Route path={doneRoute}>
-						<DoneMenu />
-					</Route>
-					<Route path="/">
-						<MainMenu />
-					</Route>
-				</Switch>
-			</Router>
+			<RecoilRoot>
+				<MessageHandler>
+					<Router>
+						<Switch>
+							<Route path={parameterizedTapRoute}>
+								<TapScreen />
+							</Route>
+							<Route path={calibrateRoute}>
+								<CalibrateScreen />
+							</Route>
+							<Route path={parameterizedDragRoute}>
+								<DragScreen />
+							</Route>
+							<Route path={doneRoute}>
+								<DoneMenu />
+							</Route>
+							<Route path="/">
+								<MainMenu />
+							</Route>
+						</Switch>
+					</Router>
+				</MessageHandler>
+			</RecoilRoot>
 		</div>
 	);
 }
